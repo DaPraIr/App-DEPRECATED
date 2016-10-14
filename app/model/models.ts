@@ -18,22 +18,22 @@ export class UserLocation {
 
 export class Places {
     PlacesId: string;
-    Name:string;
-    Address:string;
-    Latitude:number;
-    Longitude:number;
-    Positives:number;
-    Negatives:number;
-    TotalComments:number;
-    TotalVotes:number;
+    Name: string;
+    Address: string;
+    Latitude: number;
+    Longitude: number;
+    Positives: number;
+    Negatives: number;
+    TotalComments: number;
+    TotalVotes: number;
     Votes: Array<Vote>;
-    Distance:number;
+    Distance: number;
 }
 
 export class Vote {
-    Name:string;
-    AccessibilityId:number;
-    Positive:number;
-    Negative:number;
-    MyVote:number;
+    Name: string;
+    AccessibilityId: number;
+    Positive: number;
+    Negative: number;
+    MyVote: number;
 }
