@@ -1,0 +1,32 @@
+.evaluatesModal {
+    .header-map{
+        margin-top: -18px !important;   
+        margin-left: -15px !important;
+        max-width: 490px !important;
+    }
+
+    .btnGreenDisabled{
+        border-color: $vote-positive;
+        color: $vote-positive;
+    }
+    .btnGreenEnabled{
+        border-color: $vote-positive;
+        color: white;
+        background-color: $vote-positive; 
+    }
+    .btnGreenEnabled :hover{
+        border-color: $vote-positive;
+        color: white;
+        background-color: $vote-positive; 
+    }
+
+    .btnRedDisabled{
+        border-color: $vote-negative;
+        color: $vote-negative;
+    }
+    .btnRedEnabled{
+        border-color: $vote-negative;
+        color: white;
+        background-color:$vote-negative; 
+    }
+}

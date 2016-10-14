@@ -2,18 +2,17 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import { Globals } from '../../globals';
 import { Component } from '@angular/core';
-import { Places } from '../../model/models';
 import { AlertService } from '../../providers/alert/alert';
-import { EvaluatesModal } from '../evaluatesModal/evaluatesModal';
 import { Device, SpinnerDialog, InAppBrowser, AdMob } from 'ionic-native';
 import { NavController, ModalController, Tabs, LoadingController, Storage, SqlStorage } from 'ionic-angular';
 
 @Component({
-    templateUrl: 'build/pages/home/home.html',
+    templateUrl: 'build/pages/news/news.html',
     providers: [AlertService]
 })
 
-export class HomePage {
+export class NewsPage {
+
     storage: Storage;
 
     evaluated: any = [];
@@ -27,29 +26,34 @@ export class HomePage {
     constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertService, private loadingController: LoadingController, private http: Http) {
         SpinnerDialog.show("Aguarde...");
         this.storage = new Storage(SqlStorage);
-        this.getHomeData(0);
+        this.getNewsData(0);
         this.storage.get("uuid").then((res) => {
             this.device = res;
         });
+    }
+
+    sendFeedback() {
+        this.http.post(Globals.urlApi + "/api/V2/ReciveFeedback", {
+            Name: this.feedback.name, Email: this.feedback.email,
+            Message: this.feedback.message, Uuid: this.device
+        }).map(res => res.json())
+            .subscribe((res) => {
+                this.alertCtrl.presentAlert("Obrigado!", "Sua mensagem foi enviada com sucesso! Obrigado!");
+            }, (err) => {
+                this.alertCtrl.presentErrorAlert("Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.");
+                console.log(err);
+            });
     }
 
     goFacebook() {
         InAppBrowser.open("https://www.facebook.com/AppDaPraIr", "_system");
     }
 
-    goListPlaces() {
-        let t: Tabs = this.navCtrl.parent;
-        t.select(1);
-    }
+    getNewsData(attempts: number = 0) {
 
-    evaluates(place: Places) {
-        this.modalCtrl.create(EvaluatesModal, { place: place }).present();
-    }
-
-    getHomeData(attempts: number = 0) {
         this.http.get(Globals.urlApi + "/api/V2/App/Home").map(res => res.json()).subscribe(data => {
-            this.evaluated = data.Evaluated;
-            this.comments = data.Comments;
+            this.news = data.News;
+            this.facebook = data.Facebook;
 
             //this.loader.dismiss();
             SpinnerDialog.hide();
@@ -60,7 +64,7 @@ export class HomePage {
             console.log(err);
             /*if(attempts < 5){
             attempts++;
-            this.getHomeData(attempts);
+            this.getNewsData(attempts);
             }*/
         });
     }

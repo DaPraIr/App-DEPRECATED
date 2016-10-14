@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-navbar primary>
+		<ion-title>Dá Pra Ir?</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="comments">
+	<h3>Adicionar novo</h3>
+	<ion-list>
+		<ion-item>
+			<ion-label stacked>Nome</ion-label>
+			<ion-input [(ngModel)]="comment.name"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Mensagem</ion-label>
+			<ion-textarea [(ngModel)]="comment.message" rows="3" placeholder=""></ion-textarea>
+		</ion-item>
+	</ion-list>
+	<button full (click)="sendComment()">Enviar</button>
+
+	<hr />
+
+	<h4>Comentários ({{ place.TotalComments }}) </h4>
+	<ion-list>
+		<ion-item *ngFor="let c of place.Comments">
+			<button danger clear item-right>
+               <ion-icon name="flag"></ion-icon>
+               Reportar
+               </button>
+			<p><strong>{{ c.Name }}</strong></p>
+			<p><small>{{ c.Date }}</small></p>
+			<ion-item text-wrap>
+				<p>{{ c.Message }}</p>
+			</ion-item>
+		</ion-item>
+	</ion-list>
+	<p danger>As opniões aqui expressadas são de inteira responsabilidade de seus autores.</p>
+</ion-content>
