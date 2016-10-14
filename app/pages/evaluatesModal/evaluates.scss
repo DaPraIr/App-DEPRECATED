@@ -1,0 +1,30 @@
+.header-map{
+ margin-top: -18px !important;   
+ margin-left: -15px !important;
+ max-width: 490px !important;
+}
+
+.btnGreenDisabled{
+    border-color: green;
+    color: green;
+}
+.btnGreenEnabled{
+    border-color: green;
+    color: white;
+    background-color:green; 
+}
+.btnGreenEnabled :hover{
+    border-color: green;
+    color: white;
+    background-color:green; 
+}
+
+.btnRedDisabled{
+    border-color: red;
+    color: red;
+}
+.btnRedEnabled{
+    border-color: red;
+    color: white;
+    background-color:red; 
+}

@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-toolbar primary>
+    <ion-title>
+      Avaliações - {{ place.Name }}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows,web"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-tabs selectedIndex="2" tabbarPlacement="top" primary>
+  <ion-tab [root]="tab1Root" [rootParams]="placeShare" tabTitle="Avaliações" tabIcon="checkbox-outline" tabBadge="{{ numVotes }}" tabBadgeStyle="danger"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="placeShare" tabTitle="Comentários" tabBadge="{{ numComments }}" tabBadgeStyle="danger" tabIcon="chatbubbles"></ion-tab>
+  <!--<ion-tab [root]="tab3Root" tab-title="Mapa"></ion-tab>-->
+</ion-tabs>

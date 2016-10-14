@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>Dá Pra Ir?</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+  <ion-card>
+    <ion-card-header>Bem vindo ao Dá Pra Ir?</ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+    <ion-list>
+      <button ion-item (click)="goListPlaces()">
+        <ion-icon name="pin" item-left></ion-icon>
+            Locais próximos
+      </button>
+      <!--
+      <button ion-item>
+        <ion-icon name="book" item-left></ion-icon>
+            Leis de acessibilidade e inclusão
+      </button>
+      -->
+    <button ion-item (click)="goFacebook()">
+        <ion-icon name="logo-facebook" item-left></ion-icon>
+            Curta nosso Facebook
+      </button>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Últimas avaliações
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let ev of evaluated">
+          <br />
+          <!-- TODO Fix padding on scss-->
+          <h3>{{ ev.Name }}</h3>
+          <small>{{ ev.Address }}, {{ ev.City }} - {{ ev.State }}</small>
+          <ion-row>
+            <ion-col class="good-vote">
+              <ion-icon name="thumbs-up" item-left></ion-icon> {{ ev.Positives }} Bom </ion-col>
+            <ion-col class="bad-vote">
+              <ion-icon name="thumbs-down" item-left></ion-icon> {{ ev.Negatives }} Ruim </ion-col>
+          </ion-row>
+          <button ion-item (click)="evaluates(ev)">
+          <ion-icon name="eye"></ion-icon>
+          Ver avaliações
+        </button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      Últimos comentários
+    </ion-card-header>
+    <ion-list>
+      <ion-item text-wrap *ngFor="let cmm of comments">
+        <p><strong>{{ cmm.User }}</strong> comentou em <strong>{{ cmm.PlaceName }}</strong></p>
+        <p>{{ cmm.Message }} </p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header class="header-facebook" *ngIf="facebook != null" (click)="goFacebook()">
+      <ion-icon name="logo-facebook" item-left></ion-icon>
+      Última do Facebook Dá Pra Ir?
+    </ion-card-header>
+    <img src="{{ facebook.Image }}" />
+    <ion-card-content>
+      <p>{{ facebook.Message }}</p>
+      <button clear (click)="goFacebook()">
+  <ion-icon name="thumbs-up" item-left></ion-icon>
+  Curtir nossa  página
+</button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      Noticias
+    </ion-card-header>
+    <ion-list>
+      <ion-item text-wrap *ngFor="let n of news">
+        <br />
+        <!-- TODO Fix padding on scss-->
+        <!--<ion-icon name="ios-arrow-forward" item-right></ion-icon>-->
+        <h3><strong>{{ n.Title }}</strong></h3>
+        <p>{{ n.Content }}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      Sugestões ou dúvidas?
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="feedback.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="feedback.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Mensagem</ion-label>
+          <ion-textarea [(ngModel)]="feedback.message" rows="5" placeholder="Tem alguma sugestão, dúvida ou reclamação? Nós mande uma mensagem e responderemos em breve."></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <button clear (click)="sendFeedback()">
+  Enviar
+</button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>Nossos parceiros</ion-card-header>
+    <ion-card-content>
+      <ion-slides>
+        <ion-slide>
+          <img src="images/carambola.jpg" />
+        </ion-slide>
+      </ion-slides>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

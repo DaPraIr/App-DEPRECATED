@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>
+      Locais Acessiveis - Dá Pra Ir?
+    </ion-title>
+
+     <ion-buttons end>
+      <button (click)="getData(true)">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="listPlaces">
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Pesquisar estabelecimento</ion-label>
+      <ion-input type="search" [(ngModel)]="search"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Sua localização</ion-label>
+      <ion-input type="text" [(ngModel)]="myAddress" name="myAddress" id="myAddress" (click)="showAddressModal()"></ion-input>
+    </ion-item>
+  </ion-list>
+      <button primary full (click)="getData(true)">
+      <ion-icon name="search" item-left></ion-icon>
+      Pesquisar
+    </button>
+  <ion-card *ngFor="let p of places">
+ 
+    <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ p.Latitude }},{{ p.Longitude }}&zoom=14&scale=2&size=250x150&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0x2b2bff%7Clabel:%7C{{ p.Latitude }},{{ p.Longitude }}" />
+    <ion-card-header>
+      {{ p.Name }}
+    </ion-card-header>
+    <ion-card-content>
+      <p class="small">{{ p.Address }}</p>
+      <ion-row>
+        <ion-col class="good-vote">
+          <ion-icon name="thumbs-up" item-left></ion-icon> {{ p.Positives }} Bom </ion-col>
+        <ion-col class="bad-vote">
+          <ion-icon name="thumbs-down" item-left></ion-icon> {{ p.Negatives }} Ruim </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-list>
+      <button ion-item (click)="evaluates(p)">
+            <ion-icon name="eye" item-left></ion-icon>
+            Ver avaliações
+          </button>
+      <button ion-item (click)="evaluates(p)">
+            <ion-icon name="checkmark" item-left></ion-icon>
+            Avaliar
+          </button>
+      <button ion-item (click)="navigate(p.Latitude, p.Longitude)">
+            <ion-icon name="navigate" item-left></ion-icon>
+            Navegar até lá
+          </button>
+          <!--
+      <button ion-item>
+            <ion-icon name="share" item-left></ion-icon>
+            Compartilhar avaliação
+          </button>
+          -->
+    </ion-list>
+  </ion-card>
+
+  <br />
+  <br />
+</ion-content>
+<!-- align to the bottom of the page -- >
+<div class="bottom-add-place-btn">
+  <div style="text-align: center">
+    <button secondary full>Avaliar novo local</button>
+  </div>
+</div> -->
