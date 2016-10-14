@@ -1,3 +1,4 @@
+import { NewsPage } from '../news/news';
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { ListPlaces } from '../listPlaces/listPlaces';
@@ -17,6 +18,6 @@ export class TabsPage {
     // should be each tab's root Page
     this.tab1Root = HomePage;
     this.tab2Root = ListPlaces;
-    this.tab3Root = ContactPage;
+    this.tab3Root = NewsPage;
   }
 }

@@ -13,8 +13,18 @@
 
 @import "../pages/home/home";
 
+@import "../pages/news/news";
+
 @import "../pages/evaluatesModal/evaluatesModal";
 
 @import "../pages/evaluatesModal/evaluates";
 
-@import "../pages/evaluatesModal/comments"
+@import "../pages/evaluatesModal/comments";
+ 
+ion-card-header {
+    font-weight: bold !important;
+}
+
+textarea, p {
+    text-align: justify;
+}

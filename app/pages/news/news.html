@@ -1,0 +1,77 @@
+<ion-header>
+	<ion-navbar primary>
+		<ion-title>Dá Pra Ir?</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="news">
+
+	<ion-card>
+		<ion-card-header>
+			Notícias
+		</ion-card-header>
+		<ion-list>
+			<ion-item text-wrap *ngFor="let n of news">
+				<br />
+				<!-- TODO Fix padding on scss-->
+				<!--<ion-icon name="ios-arrow-forward" item-right></ion-icon>-->
+				<h3><strong>{{ n.Title }}</strong></h3>
+				<p>{{ n.Content }}</p>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header class="header-facebook" *ngIf="facebook != null" (click)="goFacebook()">
+			<ion-icon name="logo-facebook" item-left></ion-icon>
+			Última do Facebook Dá Pra Ir?
+		</ion-card-header>
+		<img src="{{ facebook.Image }}" />
+		<ion-card-content>
+			<p>{{ facebook.Message }}</p>
+			<button clear (click)="goFacebook()">
+        <ion-icon name="thumbs-up" item-left></ion-icon>
+        Curtir nossa  página
+      </button>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Sugestões ou dúvidas?
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list>
+				<ion-item>
+					<ion-label floating>Nome</ion-label>
+					<ion-input type="text" [(ngModel)]="feedback.name"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label floating>Email</ion-label>
+					<ion-input type="email" [(ngModel)]="feedback.email"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Mensagem</ion-label>
+					<ion-textarea [(ngModel)]="feedback.message" rows="5" placeholder="Tem alguma sugestão, dúvida ou reclamação? Nos mande uma mensagem e responderemos em breve."></ion-textarea>
+				</ion-item>
+			</ion-list>
+			<button clear (click)="sendFeedback()"> 
+        Enviar
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+		</ion-card-content>
+	</ion-card>
+
+
+	<ion-card>
+		<ion-card-header>Nossos parceiros</ion-card-header>
+		<ion-card-content>
+			<ion-slides>
+				<ion-slide>
+					<img src="images/carambola.jpg" />
+				</ion-slide>
+			</ion-slides>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>
