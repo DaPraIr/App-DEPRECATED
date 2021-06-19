@@ -1,7 +1,7 @@
-# DaPraIr?
-
-## Deprecated
+# Deprecated :x:
 **This repository has deprecated in favor of a new App in Flutter in this repository: [ coming soon ]**
+
+## DaPraIr?
 
 An application that helps people to find and rate accessible places.
 
